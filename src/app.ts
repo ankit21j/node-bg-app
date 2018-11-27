@@ -24,7 +24,14 @@ class App {
 
   private mongoSetup(): void {
     mongoose.Promise = global.Promise
-    mongoose.connect(this.mongoUrl)
+    mongoose.connect(this.mongoUrl, (err) => {
+      if(err){
+        console.log(err);
+        console.log('Mongo not connected')
+        return ;
+      }
+      console.log('Connected to mongo')
+    })
   }
 }
 

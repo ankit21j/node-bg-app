@@ -3,13 +3,15 @@ import * as bodyParser from "body-parser"
 
 import * as mongoose from "mongoose"
 
+import * as logger from "winston"
+
 import { Routes } from "./routes/index"
 
 class App {
   public app: express.Application
   public routePrv: Routes = new Routes()
 
-  public mongoUrl: string = "mongodb://localhost/test-database"
+  public mongoUrl: string = "mongodb://mongo/test-database"
 
   constructor() {
     this.app = express()
@@ -26,11 +28,11 @@ class App {
     mongoose.Promise = global.Promise
     mongoose.connect(this.mongoUrl, (err) => {
       if(err){
-        console.log(err);
-        console.log('Mongo not connected')
+        logger.error(err);
+        logger.error('Mongo not connected')
         return ;
       }
-      console.log('Connected to mongo')
+      logger.info('Connected to mongo')
     })
   }
 }

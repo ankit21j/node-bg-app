@@ -77,5 +77,3 @@ local-scripts/
 # exclude local settings
 src/config/local.settings.ts
 dist/config/local.settings.ts
-
-test/test.txt
